@@ -5,7 +5,7 @@ import android.content.Context
 import io.realm.Realm
 import java.lang.Exception
 
-object RealmObject {
+ object RealmObject {
 
     lateinit var realm : Realm
 
@@ -31,7 +31,7 @@ object RealmObject {
         var emp = Employe()
         try {
             realm.executeTransaction{
-                emp = it.where(Employe :: class.java).equalTo("id", id).findFirst()!!
+                emp = it.where(Employe :: class.java).equalTo("emp_id", id).findFirst()!!
             }
         }
         catch (ex: Exception){
@@ -70,10 +70,10 @@ object RealmObject {
         }
     }
 
-    fun deleteUser(id: Long) : Boolean {
+    fun deleteUser(id: Int) : Boolean {
         try{
             realm.executeTransaction{
-                it.where(Employe :: class.java).equalTo("id", id).findFirst()!!.deleteFromRealm()
+                it.where(Employe :: class.java).equalTo("emp_id", id).findFirst()!!.deleteFromRealm()
             }
             return true
         }
@@ -87,7 +87,7 @@ object RealmObject {
         var id = 0
         try {
             realm.executeTransaction {
-                id = it.where(Employe::class.java).max("id")!!.toInt() + 1
+                id = it.where(Employe::class.java).max("emp_id")!!.toInt() + 1
             }
         }
         catch (ex: Exception) {

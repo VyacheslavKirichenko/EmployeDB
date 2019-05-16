@@ -11,9 +11,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    companion object {
-        lateinit var result: ArrayList<Employe>
-    }
+//    companion object {
+//        lateinit var result: ArrayList<Employe>
+//    }
 
     lateinit var defaultEmployeList: GenerateEmployeData
 
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             com.example.employedb.RealmObject.initData(defaultEmployeList.generateEmployeeData())
         }
 
-        result = com.example.employedb.RealmObject.readAllContacts()
+       // result = com.example.employedb.RealmObject.readAllContacts()
       //  com.example.employedb.RealmObject.initBase(this)
 
 
@@ -40,8 +40,8 @@ class MainActivity : AppCompatActivity() {
 
 
     fun setRecyclerAdapter() {
-        var adapter: EmplyeAdapter? = null
-        adapter = EmplyeAdapter(this, result)
+        var adapter: EmplyeAdapter?
+        adapter = EmplyeAdapter(this, com.example.employedb.RealmObject.readAllContacts())
 
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recycler_emp.setLayoutManager(layoutManager)
@@ -49,8 +49,4 @@ class MainActivity : AppCompatActivity() {
         recycler_emp.adapter = adapter
 
     }
-
-
-
-
 }
