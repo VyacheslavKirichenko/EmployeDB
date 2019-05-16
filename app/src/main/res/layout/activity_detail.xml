@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                             xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                             android:layout_height="match_parent" android:orientation="vertical"
+>
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars[6]"
+            tools:layout_editor_absoluteY="41dp" android:id="@+id/imageView"
+            tools:layout_editor_absoluteX="141dp" android:layout_gravity="center"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" tools:layout_editor_absoluteY="241dp"
+            tools:layout_editor_absoluteX="176dp" android:id="@+id/text_detail_name" android:layout_gravity="center"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" tools:layout_editor_absoluteY="284dp"
+            tools:layout_editor_absoluteX="176dp" android:id="@+id/text_detail_salary" android:layout_gravity="center"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" tools:layout_editor_absoluteY="339dp"
+            tools:layout_editor_absoluteX="176dp" android:id="@+id/text_detail_position"
+            android:layout_gravity="center"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" tools:layout_editor_absoluteY="390dp"
+            tools:layout_editor_absoluteX="176dp" android:id="@+id/text_detail_description"/>
+</android.widget.LinearLayout>
