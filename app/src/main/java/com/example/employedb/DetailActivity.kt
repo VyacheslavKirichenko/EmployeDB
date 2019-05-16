@@ -29,6 +29,7 @@ class DetailActivity : AppCompatActivity() {
                 text_detail_name.text = employe2.emp_name
                 text_detail_position.text = employe2.emp_position
                 text_detail_salary.text = employe2.emp_salary
+                text_detail_description.text = employe2.emp_description
                // image_fotoDetail_laout.setImageResource(employe2.emp_photo!!)
             }
         }

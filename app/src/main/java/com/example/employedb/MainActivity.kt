@@ -11,11 +11,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-
     companion object {
         lateinit var result: ArrayList<Employe>
     }
-   // var empList = ArrayList<Employe>()
+
     lateinit var defaultEmployeList: GenerateEmployeData
 
     override fun onCreate(savedInstanceState: Bundle?) {
