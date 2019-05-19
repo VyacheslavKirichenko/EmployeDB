@@ -14,7 +14,7 @@ import java.lang.Exception
         realm = Realm.getDefaultInstance()
     }
 
-    fun createUser(emp: Employe) : Boolean {
+    fun createEmploye(emp: Employe) : Boolean {
         try {
             realm.executeTransaction {
                 it.copyToRealm(emp)
@@ -57,7 +57,7 @@ import java.lang.Exception
     }
 
 
-    fun updateUser(emp: Employe) : Boolean {
+    fun updateEmploye(emp: Employe) : Boolean {
         try{
             realm.executeTransaction {
                 it.copyToRealmOrUpdate(emp)
@@ -70,7 +70,7 @@ import java.lang.Exception
         }
     }
 
-    fun deleteUser(id: Int) : Boolean {
+    fun deleteEmploye(id: Int) : Boolean {
         try{
             realm.executeTransaction{
                 it.where(Employe :: class.java).equalTo("emp_id", id).findFirst()!!.deleteFromRealm()
@@ -99,7 +99,7 @@ import java.lang.Exception
     fun initData(defaulUserList: ArrayList<Employe>): Boolean {
         try {
             for(user in defaulUserList) {
-                createUser(user)
+                createEmploye(user)
             }
         } catch (ex: Exception) {
             print(ex)

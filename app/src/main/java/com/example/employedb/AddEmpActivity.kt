@@ -13,20 +13,20 @@ class AddEmpActivity : AppCompatActivity() {
 
 
     val realmBD = RealmObject
-   // var notification = Notification
+    var notification = EmpNotifications()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_emp)
 
         save_add_button.setOnClickListener {
-            addContactToRecycler()
+            addEmp()
         }
     }
 
 
 
-    private fun addContactToRecycler() {
+    private fun addEmp() {
 
         var name = add_name.text.toString()
         var position = add_position.text.toString()
@@ -38,13 +38,15 @@ class AddEmpActivity : AppCompatActivity() {
             add_salary.setText("")
             add_description.setText("")
             var id = RealmObject.getNewId().toInt()
-            realmBD.createUser(Employe(id,name,position,salary,description,imgToByteArray(R.drawable.b4)))
-           // var lastId = realmBD.getNewId()
-          //  var notificationIntent = Intent(this, ContactDetails::class.java)
-         //   notificationIntent.putExtra("id",id)
-          //  notification.makeNotification(this,"Add contact","Successfully add",R.drawable.add_white_24dp,notificationIntent)
+            var img = imgToByteArray(R.drawable.empty)
+            realmBD.createEmploye(Employe(id,name,position,salary,description,img))
+
+            var notificationIntent = Intent(this, DetailActivity::class.java)
+            notificationIntent.putExtra("id",id)
+            notification.makeNotifications(this,R.drawable.notifadd,"Successfully add",
+                "Employe "+ name+" has been add to database",notificationIntent,1)
+
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("listChanged", true)
             startActivity(intent)
         }
     }

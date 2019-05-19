@@ -14,16 +14,8 @@ import android.widget.TextView
 
 
 class EmplyeAdapter(var context: Context,var emps: List<Employe>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    //var context: Context
     var pozId: Int = 0
-   // var employes: List<Employe>
-   // var TAG = "EmpAdapter"
 
-   // init {
-    //    this.context = context
-      //  this.employes = emps
-
-  //  }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -37,7 +29,11 @@ class EmplyeAdapter(var context: Context,var emps: List<Employe>) : RecyclerView
        // eh.lbl_designation.setText(employe.emp_position)
         eh.lbl_name.setText(employe.emp_name)
         eh.lbl_salary.setText(employe.emp_salary)
-        eh.img_emp.setImageBitmap(convertToBitmap(employe.emp_photo!!))
+        if (employe.emp_photo == null) {
+            eh.img_emp.setImageResource(R.drawable.empty)
+        } else {
+            eh.img_emp.setImageBitmap(convertToBitmap(employe.emp_photo!!))
+        }
         eh.ClickItem(employe.emp_id)
     }
 
@@ -49,13 +45,11 @@ class EmplyeAdapter(var context: Context,var emps: List<Employe>) : RecyclerView
 
         var lbl_name: TextView
         var img_emp: ImageView
-      //  var lbl_designation: TextView
         var lbl_salary: TextView
 
         init {
             lbl_name = itemView.findViewById(R.id.lbl_name) as TextView
             img_emp = itemView.findViewById(R.id.image_fotoDetail_laout) as ImageView
-           // lbl_designation = itemView.findViewById(R.id.lbl_position) as TextView
             lbl_salary = itemView.findViewById(R.id.lbl_salary) as TextView
         }
 

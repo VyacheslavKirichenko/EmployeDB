@@ -3,51 +3,29 @@ package com.example.employedb
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.cell_item_layout.*
 
 class DetailActivity : AppCompatActivity() {
     var flagClick = 0
     var id = 0
-   //var realmDB = com.example.employedb.RealmObject
+    var notification = EmpNotifications()
     var emp = Employe()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-
-        id = intent.getIntExtra("id", 0)
-
-//        if(intent.hasExtra("id")) {
-//            id = intent.getIntExtra("id", 0)
-//        }else{
-//            db.initBase(this)
-//        }
-//
-//        emp = db.readUserById(id)!!
-
-        com.example.employedb.RealmObject.initBase(this)
-            emp = RealmObject.readUserById(id)!!
-
-
+       RealmObject.initBase(this)
         if (intent != null) {
              id = intent.getIntExtra("id", 0)
            fillFields(id)
         }
-
-        fillFields(id)
-         clickButtonsUpdate()
+        clickButtonsUpdate()
         clickDeleteButton()
-
     }
-
 
     private fun clickButtonsUpdate(){
         btn_update_detail.setOnClickListener {
@@ -60,13 +38,27 @@ class DetailActivity : AppCompatActivity() {
                 seaveContactInfo()
                 flagClick = 0
                 updateInfo()
+
+                var notificationIntent = Intent(this, DetailActivity::class.java)
+                notificationIntent.putExtra("id",id)
+                notification.makeNotifications(this,R.drawable.editnotif,"Update employe",
+                    "Employe  has been edited ",notificationIntent,3)
+
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("listChanged", true)
+                startActivity(intent)
+
             }
         }
     }
 
     fun clickDeleteButton() {
         btn_delete_detail.setOnClickListener {
-            RealmObject.deleteUser(id)
+            val empDel = RealmObject.readUserById(id)!!.emp_name
+            RealmObject.deleteEmploye(id)
+            var notificationIntent = Intent(this, MainActivity::class.java)
+            notification.makeNotifications(this,R.drawable.notifdell,"Delete employe",
+                "Employe "+ empDel +" has been removed from database",notificationIntent,2)
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("listChanged", true)
             startActivity(intent)
@@ -79,12 +71,7 @@ class DetailActivity : AppCompatActivity() {
         var position = text_detail_position.text.toString()
         var salary = text_detail_salary.text.toString()
         var description = text_detail_description.text.toString()
-        RealmObject.updateUser(Employe(id,name,position,salary,description,emp.emp_photo))
-
-//        var notificationIntent = Intent(this, ContactDetails::class.java)
-//        notificationIntent.putExtra("id",entry_id)
-//        notification.makeNotification(this,"Update contact","Successfully update",R.drawable.edit_white_24dp,notificationIntent)
-
+        RealmObject.updateEmploye(Employe(id,name,position,salary,description,emp.emp_photo))
     }
 
     private fun updateInfo() {
@@ -109,7 +96,11 @@ class DetailActivity : AppCompatActivity() {
         text_detail_position.setText(employe2.emp_position)
         text_detail_salary.setText(employe2.emp_salary)
         text_detail_description.setText(employe2.emp_description)
-        image_foto_detail.setImageBitmap(convertToBitmap(employe2.emp_photo!!))
+        if (employe2.emp_photo == null){
+        image_foto_detail.setImageResource(R.drawable.empty)
+    } else
+        {image_foto_detail.setImageBitmap(convertToBitmap(employe2.emp_photo!!))
+        }
     }
 
 

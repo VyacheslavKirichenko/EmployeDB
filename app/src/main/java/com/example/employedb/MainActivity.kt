@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
             defaultEmployeList = GenerateEmployeData(this)
             com.example.employedb.RealmObject.initData(defaultEmployeList.generateEmployeeData())
         }
+        var q  = com.example.employedb.RealmObject.readAllContacts()
+
         clickAddEmployeBtn()
         setRecyclerAdapter()
     }
