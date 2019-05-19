@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:tools="http://schemas.android.com/tools" android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Redactor" >
+
+        <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/add_image"
+                android:layout_gravity="center" android:foreground="@drawable/b5"/>
+
+        <EditText
+                android:id="@+id/add_name"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:hint="Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:textIsSelectable="false" android:enabled="true"/>
+
+        <EditText
+                android:id="@+id/add_position"
+                android:layout_marginTop="15dp"
+                android:textSize="15sp"
+                android:hint="Position"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:enabled="true"/>
+        <EditText
+                android:id="@+id/add_salary"
+                android:layout_marginTop="15dp"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Salary"
+                android:inputType="number" android:enabled="true"/>
+        <EditText
+                android:id="@+id/add_description"
+                android:layout_marginTop="15dp"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description" android:enabled="true"/>
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/save_add_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:src="@drawable/addicon"
+                android:layout_margin="16dp"/>
+
+
+    </LinearLayout>
+
+</ScrollView>

@@ -7,6 +7,9 @@ import java.io.ByteArrayOutputStream
 
 class GenerateEmployeData  (val context: Context)
 {
+
+    init {
+    }
    // var  imgArr = ArrayList<Integer>()
     var result = ArrayList<Employe>()
    private val addDescriptionSomeText = "William H. Seward (May 16, 1801 – October 10, 1872) was United States Secretary of State from 1861 to 1869. " +

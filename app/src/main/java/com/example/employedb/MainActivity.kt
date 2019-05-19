@@ -11,10 +11,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-//    companion object {
-//        lateinit var result: ArrayList<Employe>
-//    }
-
     lateinit var defaultEmployeList: GenerateEmployeData
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,18 +22,14 @@ class MainActivity : AppCompatActivity() {
             defaultEmployeList = GenerateEmployeData(this)
             com.example.employedb.RealmObject.initData(defaultEmployeList.generateEmployeeData())
         }
-
-       // result = com.example.employedb.RealmObject.readAllContacts()
-      //  com.example.employedb.RealmObject.initBase(this)
-
-
-       // var empList: ArrayList<Employe>
-        //empList = defaultEmployeList.generateEmployeeData()
-        //result = empList
-
+        clickAddEmployeBtn()
         setRecyclerAdapter()
     }
 
+    override fun onRestart() {
+        super.onRestart()
+    setRecyclerAdapter()
+    }
 
     fun setRecyclerAdapter() {
         var adapter: EmplyeAdapter?
@@ -47,6 +39,14 @@ class MainActivity : AppCompatActivity() {
         recycler_emp.setLayoutManager(layoutManager)
 
         recycler_emp.adapter = adapter
-
     }
+    private fun clickAddEmployeBtn() {
+
+        add_button.setOnClickListener {
+
+            val intent = Intent(this, AddEmpActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
 }
