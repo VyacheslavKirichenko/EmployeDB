@@ -1,5 +1,4 @@
 package com.example.employedb
-
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -22,11 +21,17 @@ class DetailActivity : AppCompatActivity() {
         if (intent != null) {
              id = intent.getIntExtra("id", 0)
            fillFields(id)
+            emp = RealmObject.readUserById(id)!!
         }
         clickButtonsUpdate()
         clickDeleteButton()
     }
 
+
+    override fun onResume() {
+        super.onResume()
+       // RealmObject.initBase(this)
+    }
     private fun clickButtonsUpdate(){
         btn_update_detail.setOnClickListener {
             if( flagClick == 0 ){
@@ -40,7 +45,7 @@ class DetailActivity : AppCompatActivity() {
                 updateInfo()
 
                 var notificationIntent = Intent(this, DetailActivity::class.java)
-                notificationIntent.putExtra("id",id)
+                notificationIntent.putExtra("id",id)                                    ////
                 notification.makeNotifications(this,R.drawable.editnotif,"Update employe",
                     "Employe  has been edited ",notificationIntent,3)
 
@@ -91,7 +96,7 @@ class DetailActivity : AppCompatActivity() {
 
 
     private  fun fillFields (id: Int){
-        val employe2 = RealmObject.readUserById(id)
+        var employe2 = RealmObject.readUserById(id)
         text_detail_name.setText(employe2!!.emp_name)
         text_detail_position.setText(employe2.emp_position)
         text_detail_salary.setText(employe2.emp_salary)

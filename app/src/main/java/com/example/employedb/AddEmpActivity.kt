@@ -10,8 +10,6 @@ import kotlinx.android.synthetic.main.activity_add_emp.*
 import java.io.ByteArrayOutputStream
 
 class AddEmpActivity : AppCompatActivity() {
-
-
     val realmBD = RealmObject
     var notification = EmpNotifications()
 
@@ -23,8 +21,6 @@ class AddEmpActivity : AppCompatActivity() {
             addEmp()
         }
     }
-
-
 
     private fun addEmp() {
 
@@ -83,7 +79,4 @@ class AddEmpActivity : AppCompatActivity() {
 
         return stream.toByteArray()
     }
-
-
-
 }

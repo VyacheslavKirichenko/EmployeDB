@@ -30,7 +30,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-    setRecyclerAdapter()
+        com.example.employedb.RealmObject.initBase(this)
+        setRecyclerAdapter()
     }
 
     fun setRecyclerAdapter() {
