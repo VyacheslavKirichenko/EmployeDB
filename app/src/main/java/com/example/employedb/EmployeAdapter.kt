@@ -22,6 +22,10 @@ class EmplyeAdapter(var context: Context,var emps: List<Employe>) : RecyclerView
         return EmployeHolder(inflater.inflate(R.layout.cell_item_layout, parent, false))
     }
 
+    fun resetList(){
+        notifyDataSetChanged()
+    }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         pozId = position
         val employe = emps[position]
@@ -34,7 +38,7 @@ class EmplyeAdapter(var context: Context,var emps: List<Employe>) : RecyclerView
         } else {
             eh.img_emp.setImageBitmap(convertToBitmap(employe.emp_photo!!))
         }
-        eh.ClickItem(employe.emp_id)
+        eh.ClickItem(employe.emp_id!!)
     }
 
     override fun getItemCount(): Int {

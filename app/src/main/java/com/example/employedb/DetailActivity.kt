@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
     var flagClick = 0
-    var id = 0
+    var id : Int = 0
     var notification = EmpNotifications()
     var emp = Employe()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,11 +17,14 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-       RealmObject.initBase(this)
+       //RealmObject.initBase(this)
         if (intent != null) {
-             id = intent.getIntExtra("id", 0)
-           fillFields(id)
+          //  id = intent.getIntExtra("idAdd",0)
+          //  id = intent.getIntExtra("idUp",0)
+            id = intent.getIntExtra("id", 0)
             emp = RealmObject.readUserById(id)!!
+           fillFields(id)
+
         }
         clickButtonsUpdate()
         clickDeleteButton()
@@ -30,7 +33,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-       // RealmObject.initBase(this)
+        RealmObject.initBase(this)
     }
     private fun clickButtonsUpdate(){
         btn_update_detail.setOnClickListener {
@@ -50,7 +53,7 @@ class DetailActivity : AppCompatActivity() {
                     "Employe  has been edited ",notificationIntent,3)
 
                 val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("listChanged", true)
+              //  intent.putExtra("listChanged", true)
                 startActivity(intent)
 
             }
@@ -94,7 +97,6 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-
     private  fun fillFields (id: Int){
         var employe2 = RealmObject.readUserById(id)
         text_detail_name.setText(employe2!!.emp_name)
@@ -107,7 +109,6 @@ class DetailActivity : AppCompatActivity() {
         {image_foto_detail.setImageBitmap(convertToBitmap(employe2.emp_photo!!))
         }
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         var id = item?.itemId

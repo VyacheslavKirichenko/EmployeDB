@@ -28,6 +28,11 @@ class MainActivity : AppCompatActivity() {
         setRecyclerAdapter()
     }
 
+    override fun onResume() {
+        super.onResume()
+        //adater.resetList()
+    }
+
     override fun onRestart() {
         super.onRestart()
         com.example.employedb.RealmObject.initBase(this)
